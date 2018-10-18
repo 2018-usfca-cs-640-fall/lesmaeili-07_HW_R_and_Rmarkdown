@@ -27,10 +27,10 @@ And another paragraph or two here.
 # or with the 'Packages' pane in RStudio
 
 # load packages
-library("dplyr")
-library("tidyr")
-library("knitr")
-library("ggplot2")
+library("dplyr")  # This is for tables
+library("tidyr") # creates tidy data
+library("knitr") # generates reports
+library("ggplot2") # creates plot
 ```
 
 ```{r make-read-in-data-function}
@@ -122,19 +122,32 @@ joined_blast_data_metadata <- metadata_in %>%
 ```
 
 
-```{r histograms}
+```{r histograms32}
 # Here we're using the dplyr piping syntax to select a subset of rows matching a
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 joined_blast_data_metadata %>%
-  filter(env_material_s == "sebum") %>%
-  ggplot(aes(x = pident)) +
+  filter(age_s == 32) %>%  #This is what we are filtering based on specfic column
+  ggplot(aes(x = pident)) +  # this is for x axis
     geom_histogram() +
-    ggtitle("Percent Identity") +
-    xlab("Percent")
+    ggtitle("Percent Identiy Match age32") + # This is our title
+    xlab("Percent") # this is our x axis label
 ```
 
 Don't forget to report what your figures show in words, here in the Results section.
+
+
+```{r histograms37}
+# Here we're using the dplyr piping syntax to select a subset of rows matching a
+# criteria we specify (using the filter) function, and then pull out a column
+# from the data to make a histogram.
+joined_blast_data_metadata %>%
+  filter(age_s == 37) %>%
+  ggplot(aes(x = pident)) +
+    geom_histogram() +
+    ggtitle("Percent Identity Match age37") +
+    xlab("Percent")
+```
 
 ```{r summary-table}
 # Finally, we'd like to be able to make a summary table of the counts of
