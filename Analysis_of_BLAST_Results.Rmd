@@ -1,6 +1,6 @@
 ---
 title: "Analysis of BLAST Results"
-author: "Don Francisco"
+author: "Leila Esmaeili"
 date: "October 21, 2018"
 output: github_document
 ---
