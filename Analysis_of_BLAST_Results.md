@@ -1,30 +1,30 @@
----
-title: "Analysis of BLAST Results"
-author: "Leila Esmaeili"
-date: "October 21, 2018"
-output: github_document
----
+Analysis of BLAST Results
+================
+Leila Esmaeili
+October 21, 2018
 
-# Introduction
-We this new  understanding that bacterial communites on human skin are personalized , scientists have been curious to find out if this fact can be manipulated for forensic applications.  In the assigned artilce, Freier et. al have tried to answer the question whether a person  can be idntified based on  microbial colonies on the the objects he/she has touched.
+Introduction
+============
 
-# Methods
-First, The authors compared bacteria on individual keys of three computer keyboards to those found on the fingers of the keyboard owners. Second, we examined the similarity between skin-associated bacterial communities on objects stored at −20 °C(a standard method for storing 
-samples before DNA extraction) versus those objects stored under typical indoor environmental con-ditions for up to 14 days. Finally, we linked objects to specific individuals by comparing the bacteria on their computer mice against a database containing bacterial community information for more than 250 hand surfaces, including the hand of the owner.
+Add 1-2 paragraphs here.
 
-Their method of doing this was very simple. They just swabbed bacteria on the surface of keyboards and computer mice and the fingers of people touching them.  They then grew these bacteria in petri dishes and isolated communites.  And, then they extracted DNA and sequences the DNA and finall compared their sequences to a natiaonl data base.
+Methods
+=======
 
-## Sample origin and sequencing
-DNA extraction was done using the MO BIO PowerSoil DNA Isolation kit.  PCR was used for DNA amplification.  Pysrosequencing was carried out on 454 Life Sciences Genome Sequencer FLX (Roche) at University of South Carolina.
+Sample origin and sequencing
+----------------------------
 
-## Computational
-With our R studio codes, we have created a large table where all the information from above analysis are tabulated. Our codes allow for creatingtidy data, generating reports and creating plots to answer our questions.  For example, I wanted to know how different are the bacterial colonies of 32 yr old vs those of 37.  The histograms clearly show that  percent identiy match graphs are different between these two age groups. In other words, we can conculde that we maybe able to determine a person's age based on their bacterial community on their skin.
+Add about a paragraph here.
+
+Computational
+-------------
+
 And another paragraph or two here.
 
-# Results
-The results of the histograms indicate there are distinct differences between age groups.  In addition, each gener has its own kind of bacterial colonies distinct from the other gender.
+Results
+=======
 
-```{r load-libraries, message = FALSE}
+``` r
 # Be sure to install these packages before running this script
 # They can be installed either with the install.packages() function
 # or with the 'Packages' pane in RStudio
@@ -36,7 +36,7 @@ library("knitr") # generates reports
 library("ggplot2") # creates plot
 ```
 
-```{r make-read-in-data-function}
+``` r
 # Output format from BLAST is as detailed on:
 # https://www.ncbi.nlm.nih.gov/books/NBK279675/
 # In this case, we used: '10 sscinames std'
@@ -52,7 +52,7 @@ library("ggplot2") # creates plot
 # and the 'qseqid' column split into sample and seq number
 read_blast_output <- function(filename) {
   data_in <- read.csv(filename,
-                      header = FALSE  , # files don't have column names in them
+                      header = FALSE, # files don't have column names in them
                       col.names = c("sscinames", # unique Subject Sci Name(s)
                                     "qseqid",    # Query Seq-id
                                     "sseqid",    # Subject Seq-id
@@ -82,7 +82,7 @@ read_blast_output <- function(filename) {
 }
 ```
 
-```{r read-in-BLAST-data}
+``` r
 # this makes a vector of all the BLAST output file names, including
 # the name(s) of the directories they are in
 files_to_read_in <- list.files(path = "output/blast",
@@ -103,7 +103,7 @@ for (filename in files_to_read_in) {
 }
 ```
 
-```{r read-in-metadata-and-join}
+``` r
 # Next we want to read in the metadata file so we can add that in too
 # This is not a csv file, so we have to use a slightly different syntax
 # here the `sep = "\t"` tells the function that the data are tab-delimited
@@ -124,17 +124,10 @@ joined_blast_data_metadata <- metadata_in %>%
             by = c("Run_s" = "sample_name"))
 ```
 
-
-
-
-
-
-
-```{r histograms32}
+``` r
 # Here we're using the dplyr piping syntax to select a subset of rows matching a
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
-
 joined_blast_data_metadata %>%
   filter(age_s == 32) %>%  #This is what we are filtering based on specfic column
   ggplot(aes(x = pident)) +  # this is for x axis
@@ -143,10 +136,13 @@ joined_blast_data_metadata %>%
     xlab("Percent") # this is our x axis label
 ```
 
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](Analysis_of_BLAST_Results_files/figure-markdown_github/histograms32-1.png)
+
 Don't forget to report what your figures show in words, here in the Results section.
 
-
-```{r histograms37}
+``` r
 # Here we're using the dplyr piping syntax to select a subset of rows matching a
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
@@ -157,38 +153,12 @@ joined_blast_data_metadata %>%
     ggtitle("Percent Identity Match age37") +
     xlab("Percent")
 ```
-``` 
-colnames (joined_blast_data_metadata)
-joined_blast_data_metadata["env_materila_s"]
-unique(joined_blast_data_metadata["env_material_s"])
-```
-```{r histogramsdust}
-# Here we're using the dplyr piping syntax to select a subset of rows matching a
-# criteria we specify (using the filter) function, and then pull out a column
-# from the data to make a histogram.
-joined_blast_data_metadata %>%
-  filter(env_material_s=="dust") %>%
-  ggplot(aes(x = pident)) +
-    geom_histogram() +
-    ggtitle("Percent Identity Match dust") +
-    xlab("Percent")
-```
-```{r histogramssebum}
-# Here we're using the dplyr piping syntax to select a subset of rows matching a
-# criteria we specify (using the filter) function, and then pull out a column
-# from the data to make a histogram.
-joined_blast_data_metadata %>%
-  filter(env_material_s=="sebum") %>%
-  ggplot(aes(x = pident)) +
-    geom_histogram() +
-    ggtitle("Percent Identity Match sebum") +
-    xlab("Percent")
-```
 
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
+![](Analysis_of_BLAST_Results_files/figure-markdown_github/histograms37-1.png)
 
-```
-{r summary-table}
+``` r
 # Finally, we'd like to be able to make a summary table of the counts of
 # sequences for each subject for both sample types. To do that we can use the
 # table() function. We add the kable() function as well (from the tidyr package)
@@ -197,8 +167,20 @@ kable(table(joined_blast_data_metadata$host_subject_id_s,
             joined_blast_data_metadata$sample_type_s))
 ```
 
-# Discussion
+|     |  computer mouse|  right palm|
+|-----|---------------:|-----------:|
+| F2  |             396|         410|
+| F5  |             365|         777|
+| F6  |             662|         422|
+| F7  |             655|         546|
+| F8  |             878|         374|
+| M1  |             456|         878|
+| M2  |             670|         775|
+| M7  |             970|         689|
+| M8  |             717|         280|
+| M9  |             571|         968|
+
+Discussion
+==========
 
 Add 2-3 paragraphs here interpreting your results and considering future directions one might take in analyzing these data.
-Although there are diffrernes between groups
-
