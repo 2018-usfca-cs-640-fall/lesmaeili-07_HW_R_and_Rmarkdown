@@ -6,7 +6,7 @@ output: github_document
 ---
 
 # Introduction
-We this new  understanding that bacterial communites on human skin are personalized , scientists have been curious to find out if this fact can be manipulated for forensic applications.  In the assigned artilce, Freier et. al have tried to answer the question whether a person  can be idntified based on  microbial colonies on the the objects he/she has touched.
+We this new  understanding that bacterial communites on human skin are personalized, scientists have been curious to find out if this fact can be manipulated for forensic applications.  In the assigned artilce, Freier et. al have tried to answer the question whether a person  can be idntified based on  microbial colonies on the the objects he/she has touched.
 
 # Methods
 First, The authors compared bacteria on individual keys of three computer keyboards to those found on the fingers of the keyboard owners. Second, we examined the similarity between skin-associated bacterial communities on objects stored at −20 °C(a standard method for storing 
@@ -52,7 +52,7 @@ library("ggplot2") # creates plot
 # and the 'qseqid' column split into sample and seq number
 read_blast_output <- function(filename) {
   data_in <- read.csv(filename,
-                      header = FALSE  , # files don't have column names in them
+                      header = FALSE, # files don't have column names in them
                       col.names = c("sscinames", # unique Subject Sci Name(s)
                                     "qseqid",    # Query Seq-id
                                     "sseqid",    # Subject Seq-id
@@ -125,8 +125,15 @@ joined_blast_data_metadata <- metadata_in %>%
 ```
 
 
+```{r create-gender-column}
+joined_blast_data_metadata <- joined_blast_data_metadata %>%
+  mutate(host_subject_id_sex = substr(host_subject_id_s, 1, 1))
+```
 
 
+```{r unique-values-in-column}
+unique(as.character(joined_blast_data_metadata$host_subject_id_s))
+```
 
 
 
@@ -136,7 +143,7 @@ joined_blast_data_metadata <- metadata_in %>%
 # from the data to make a histogram.
 
 joined_blast_data_metadata %>%
-  filter(age_s == 32) %>%  #This is what we are filtering based on specfic column
+  filter(age_s == 32) %>%  # filtering based on specfic column
   ggplot(aes(x = pident)) +  # this is for x axis
     geom_histogram() +
     ggtitle("Percent Identiy Match age32") + # This is our title
@@ -146,8 +153,18 @@ joined_blast_data_metadata %>%
 Don't forget to report what your figures show in words, here in the Results section.
 
 
+```{r histograms25}
+# Here we're using the dplyr piping syntax to select a subset of rows matching 
+# criteria we specify (using the filter) function, and then pull out a column
+# from the data to make a histogram.
+joined_blast_data_metadata %>%
+  filter(age_s == 25) %>%
+  ggplot(aes(x = pident)) +
+    geom_histogram() +
+    ggtitle("Percent Identity Match age25") +
+    xlab("Percent")
 ```{r histograms37}
-# Here we're using the dplyr piping syntax to select a subset of rows matching a
+# Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 joined_blast_data_metadata %>%
@@ -163,22 +180,22 @@ joined_blast_data_metadata["env_materila_s"]
 unique(joined_blast_data_metadata["env_material_s"])
 ```
 ```{r histogramsdust}
-# Here we're using the dplyr piping syntax to select a subset of rows matching a
+# Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 joined_blast_data_metadata %>%
-  filter(env_material_s=="dust") %>%
+  filter(env_material_s == "dust") %>%
   ggplot(aes(x = pident)) +
     geom_histogram() +
     ggtitle("Percent Identity Match dust") +
     xlab("Percent")
 ```
 ```{r histogramssebum}
-# Here we're using the dplyr piping syntax to select a subset of rows matching a
+# Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 joined_blast_data_metadata %>%
-  filter(env_material_s=="sebum") %>%
+  filter(env_material_s == "sebum") %>%
   ggplot(aes(x = pident)) +
     geom_histogram() +
     ggtitle("Percent Identity Match sebum") +
@@ -191,7 +208,7 @@ joined_blast_data_metadata %>%
 {r summary-table}
 # Finally, we'd like to be able to make a summary table of the counts of
 # sequences for each subject for both sample types. To do that we can use the
-# table() function. We add the kable() function as well (from the tidyr package)
+# table() function. We add the kable() function as well(from the tidyr package)
 # in order to format the table nicely when the document is knitted
 kable(table(joined_blast_data_metadata$host_subject_id_s,
             joined_blast_data_metadata$sample_type_s))
@@ -199,6 +216,13 @@ kable(table(joined_blast_data_metadata$host_subject_id_s,
 
 # Discussion
 
-Add 2-3 paragraphs here interpreting your results and considering future directions one might take in analyzing these data.
-Although there are diffrernes between groups
+Add 2-3 paragraphs here interpreting your results and considering future 
+directions one might take in analyzing these data.
+The histograms allow us to compare distrubition of bacteria btween age 32 and 
+37 and 25.  We can see that histograms between the two age groups can easily be 
+distinguished. In other words, we can say looking a the histogram if the person
+who has touched the mouse is 32 or 37 or 25.
+
+Dust vs Sebum histograms are basically comparing mouse vs finger bacterial 
+colonies.  
 
