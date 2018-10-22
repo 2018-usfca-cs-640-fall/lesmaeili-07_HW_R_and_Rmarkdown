@@ -163,6 +163,7 @@ joined_blast_data_metadata %>%
     geom_histogram() +
     ggtitle("Percent Identity Match age25") +
     xlab("Percent")
+
 ```{r histograms37}
 # Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
