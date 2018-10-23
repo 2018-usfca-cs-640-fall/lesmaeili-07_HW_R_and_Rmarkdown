@@ -1,28 +1,66 @@
 ---
 title: "Analysis of BLAST Results"
 author: "Leila Esmaeili"
-date: "October 21, 2018"
+date: "October 23, 2018"
 output: github_document
 ---
 
 # Introduction
-We this new  understanding that bacterial communites on human skin are personalized, scientists have been curious to find out if this fact can be manipulated for forensic applications.  In the assigned artilce, Freier et. al have tried to answer the question whether a person  can be idntified based on  microbial colonies on the the objects he/she has touched.
+With a new  understanding that bacterial communites on human skin are
+personalized, scientists have been curious to find out if this new discovery can 
+be manipulated for forensic applications. For example, can a criminal be
+identified matching his/her skin bacterial colonies with that of those object 
+he/she may have touched. With the computations that I have done 
+with the data from the assigned artilce, Freier et. al, I
+have answered the questions if a person's age can be determined using the 
+bacteria on the skin.  Also, I wanted to answer the question compare if bacteria
+on dust vs sebum are comparable. 
 
 # Methods
-First, The authors compared bacteria on individual keys of three computer keyboards to those found on the fingers of the keyboard owners. Second, we examined the similarity between skin-associated bacterial communities on objects stored at −20 °C(a standard method for storing 
-samples before DNA extraction) versus those objects stored under typical indoor environmental con-ditions for up to 14 days. Finally, we linked objects to specific individuals by comparing the bacteria on their computer mice against a database containing bacterial community information for more than 250 hand surfaces, including the hand of the owner.
+First, The authors compared bacteria on individual keys of three computer 
+keyboards to those found on the fingers of the keyboard owners. Second, we
+examined the similarity between skin-associated bacterial communities on objects
+stored at −20 °C(a standard method for storing samples before DNA extraction) 
+versus those objects stored under typical indoor environmental con-ditions for
+up to 14 days. Finally, we linked objects to specific individuals by comparing 
+the bacteria on their computer mice against a database containing bacterial
+community information for more than 250 hand surfaces, including the hand of
+the owner.
 
-Their method of doing this was very simple. They just swabbed bacteria on the surface of keyboards and computer mice and the fingers of people touching them.  They then grew these bacteria in petri dishes and isolated communites.  And, then they extracted DNA and sequences the DNA and finall compared their sequences to a natiaonl data base.
+Their method of doing this was very simple. They just swabbed bacteria on the
+surface of keyboards and computer mice and the fingers of people touching them.  
+They then grew these bacteria in petri dishes and isolated communites.  And,
+then they extracted DNA and sequences the DNA and finall compared their 
+sequences to a natiaonl data base.
 
 ## Sample origin and sequencing
-DNA extraction was done using the MO BIO PowerSoil DNA Isolation kit.  PCR was used for DNA amplification.  Pysrosequencing was carried out on 454 Life Sciences Genome Sequencer FLX (Roche) at University of South Carolina.
+DNA extraction was done using the MO BIO PowerSoil DNA Isolation kit.  
+PCR was used for DNA amplification.  Pysrosequencing was carried out on 454 
+Life Sciences Genome Sequencer FLX (Roche) at University of South Carolina.
 
 ## Computational
-With our R studio codes, we have created a large table where all the information from above analysis are tabulated. Our codes allow for creatingtidy data, generating reports and creating plots to answer our questions.  For example, I wanted to know how different are the bacterial colonies of 32 yr old vs those of 37.  The histograms clearly show that  percent identiy match graphs are different between these two age groups. In other words, we can conculde that we maybe able to determine a person's age based on their bacterial community on their skin.
-And another paragraph or two here.
+With our R studio codes, we have created a large table where all the 
+information from above analysis are tabulated. Our codes allow for creating
+data, generating reports and creating plots to answer our questions. Let's go 
+over a specific code as an example.
++ #joined_blast_data_metadata %>%
++ # filter(age_s == 32) %>%  # filtering based on specfic column
++ #  ggplot(aes(x = pident)) +  # this is for x axis
++ #    geom_histogram() +
++ #   ggtitle("Percent Identiy Match age32") + # This is our title
++ #    xlab("Percent") # this is our x axis label
+
+In the above code, the filter command was used to choose 32 year olds in the age coloumn and draw a histogram with percent identity on  the x axis and xlab command is used for 
+to label. For example, I wanted to know how different are the bacterial colonies 
+of 32 yr old vs those of 37.  I used the code The histograms clearly show that 
+percent  identiy match graphs are different between these two age groups. In 
+other words, we can conculde that we maybe able to determine a person's age 
+based on their bacterial community on their skin.
 
 # Results
-The results of the histograms indicate there are distinct differences between age groups.  In addition, each gener has its own kind of bacterial colonies distinct from the other gender.
+The results of the histograms indicate there are distinct differences between 
+bacterial colonies for each age group.  In addition, the differnces between dust
+and sebum have been very also graphed in a histogram.  
 
 ```{r load-libraries, message = FALSE}
 # Be sure to install these packages before running this script
@@ -164,33 +202,27 @@ joined_blast_data_metadata %>%
     ggtitle("Percent Identity Match age25") +
     xlab("Percent")
 
-```{r histograms37}
-# Here we're using the dplyr piping syntax to select a subset of rows matching 
-# criteria we specify (using the filter) function, and then pull out a column
-# from the data to make a histogram.
-joined_blast_data_metadata %>%
-  filter(age_s == 37) %>%
-  ggplot(aes(x = pident)) +
-    geom_histogram() +
-    ggtitle("Percent Identity Match age37") +
-    xlab("Percent")
-```
 ``` 
+
+```{r Processing for Graph2}
 colnames (joined_blast_data_metadata)
-joined_blast_data_metadata["env_materila_s"]
+joined_blast_data_metadata["env_material_s"]
 unique(joined_blast_data_metadata["env_material_s"])
 ```
+
 ```{r histogramsdust}
 # Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
-joined_blast_data_metadata %>%
+graph2 <- joined_blast_data_metadata %>%
   filter(env_material_s == "dust") %>%
   ggplot(aes(x = pident)) +
     geom_histogram() +
     ggtitle("Percent Identity Match dust") +
     xlab("Percent")
+graph2
 ```
+
 ```{r histogramssebum}
 # Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
@@ -203,10 +235,7 @@ joined_blast_data_metadata %>%
     xlab("Percent")
 ```
 
-
-
-```
-{r summary-table}
+```{r summary-table}
 # Finally, we'd like to be able to make a summary table of the counts of
 # sequences for each subject for both sample types. To do that we can use the
 # table() function. We add the kable() function as well(from the tidyr package)
@@ -216,14 +245,15 @@ kable(table(joined_blast_data_metadata$host_subject_id_s,
 ```
 
 # Discussion
+After I did the command to identify unique age groups, I then plotted for each
+3 unique age groups a histogram with counts on the Y-axis and percent identity 
+match on the X-axis. The age histograms allow us to compare percent identity
+match between age 32 and  37 and 25.  We can see that histograms between 
+these age groups can easily be  distinguished. In other words, looking a given
+histogram, we can easily conclude if the person who has touched the mouse is
+32 or 37 or 25. To me, this is facinating and very exciting to learn that each
+age group has it own set of bacaterial colonies.
 
-Add 2-3 paragraphs here interpreting your results and considering future 
-directions one might take in analyzing these data.
-The histograms allow us to compare distrubition of bacteria btween age 32 and 
-37 and 25.  We can see that histograms between the two age groups can easily be 
-distinguished. In other words, we can say looking a the histogram if the person
-who has touched the mouse is 32 or 37 or 25.
-
-Dust vs Sebum histograms are basically comparing mouse vs finger bacterial 
-colonies.  
-
+In addiiton, I plotted histograms of counts vs percent indentity match for Dust
+vs Sebum. Dust refers to bacterial colonies on mice while sebum refers to 
+bacterial colonies on fingers.  
