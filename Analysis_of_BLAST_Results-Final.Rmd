@@ -191,7 +191,7 @@ joined_blast_data_metadata %>%
   filter(age_s == 32) %>%  # filtering based on specfic column
   ggplot(aes(x = pident)) +  # this is for x axis
     geom_histogram() +
-    ggtitle("Percent Identiy Match age 32-Figure 1") + # This is our title
+    ggtitle("Percent Identiy Match Age 32: Figure 1") + # This is our title
     xlab("Percent") # this is our x axis label
 ```
 
@@ -206,7 +206,7 @@ joined_blast_data_metadata %>%
   filter(age_s == 25) %>%
   ggplot(aes(x = pident)) +
     geom_histogram() +
-    ggtitle("Percent Identity Match age 25:Figure 2") +
+    ggtitle("Percent Identity Match Age 25: Figure 2") +
     xlab("Percent")
 
 ``` 
@@ -225,7 +225,7 @@ graph2 <- joined_blast_data_metadata %>%
   filter(env_material_s == "dust") %>%
   ggplot(aes(x = pident)) +
     geom_histogram() +
-    ggtitle("Percent Identity Match dust:Figure3") +
+    ggtitle("Percent Identity Match Dust: Figure 3") +
     xlab("Percent")
 graph2
 ```
@@ -238,18 +238,10 @@ joined_blast_data_metadata %>%
   filter(env_material_s == "sebum") %>%
   ggplot(aes(x = pident)) +
     geom_histogram() +
-    ggtitle("Percent Identity Match sebum:Figure 4") +
+    ggtitle("Percent Identity Match Sebum: Figure 4") +
     xlab("Percent")
 ```
 
-```{r summary-table}
-# Finally, we'd like to be able to make a summary table of the counts of
-# sequences for each subject for both sample types. To do that we can use the
-# table() function. We add the kable() function as well(from the tidyr package)
-# in order to format the table nicely when the document is knitted
-kable(table(joined_blast_data_metadata$host_subject_id_s,
-            joined_blast_data_metadata$sample_type_s))
-```
 # Discussion
 After I did the command to identify unique age groups, I then plotted for two of
 the unique age groups a histogram with counts on the Y-axis and percent identity 

@@ -195,10 +195,6 @@ joined_blast_data_metadata %>%
     ggtitle("Percent Identiy Match age 32-Figure 1") + # This is our title
     xlab("Percent") # this is our x axis label
 ```
-
-Don't forget to report what your figures show in words, here in the Results section.
-
-
 ```{r histograms25}
 # Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
@@ -217,39 +213,30 @@ colnames (joined_blast_data_metadata)
 joined_blast_data_metadata["env_material_s"]
 unique(joined_blast_data_metadata["env_material_s"])
 ```
-
-```{r histogramsdust}
+```{rhistogramsdust}
 # Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 graph2 <- joined_blast_data_metadata %>%
-  filter(env_material_s == "dust") %>%
-  ggplot(aes(x = pident)) +
-    geom_histogram() +
-    ggtitle("Percent Identity Match dust:Figure3") +
-    xlab("Percent")
+filter(env_material_s == "dust") %>%
+ggplot(aes(x = pident)) +
+geom_histogram() +
+ ggtitle("Percent Identity Match dust:Figure3") +
+xlab("Percent")
 graph2
 ```
-
 ```{r histogramssebum}
 # Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 joined_blast_data_metadata %>%
-  filter(env_material_s == "sebum") %>%
-  ggplot(aes(x = pident)) +
-    geom_histogram() +
-    ggtitle("Percent Identity Match sebum:Figure 4") +
-    xlab("Percent")
+filter(env_material_s == "sebum") %>%
+ggplot(aes(x = pident)) +
+geom_histogram() +
+ggtitle("Percent Identity Match sebum:Figure 4") +
+xlab("Percent")
 ```
 
-```{r summary-table}
-# Finally, we'd like to be able to make a summary table of the counts of
-# sequences for each subject for both sample types. To do that we can use the
-# table() function. We add the kable() function as well(from the tidyr package)
-# in order to format the table nicely when the document is knitted
-kable(table(joined_blast_data_metadata$host_subject_id_s,
-            joined_blast_data_metadata$sample_type_s))
 ```
 # Discussion
 After I did the command to identify unique age groups, I then plotted for two of
