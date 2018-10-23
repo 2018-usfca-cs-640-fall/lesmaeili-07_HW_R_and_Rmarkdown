@@ -182,7 +182,6 @@ unique(as.character(joined_blast_data_metadata$host_subject_id_s))
 ```
 
 
-
 ```{r histograms32}
 # Here we're using the dplyr piping syntax to select a subset of rows matching a
 # criteria we specify (using the filter) function, and then pull out a column
@@ -213,28 +212,29 @@ colnames (joined_blast_data_metadata)
 joined_blast_data_metadata["env_material_s"]
 unique(joined_blast_data_metadata["env_material_s"])
 ```
-```{rhistogramsdust}
+
+```{r histogramsdust}
 # Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
-graph2 <- joined_blast_data_metadata %>%
+joined_blast_data_metadata %>%
 filter(env_material_s == "dust") %>%
-ggplot(aes(x = pident)) +
-geom_histogram() +
- ggtitle("Percent Identity Match dust:Figure3") +
-xlab("Percent")
-graph2
+  ggplot(aes(x = pident)) +
+  geom_histogram() +
+  ggtitle("Percent Identity Match dust:Figure3") +
+  xlab("Percent")
 ```
+
 ```{r histogramssebum}
 # Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 joined_blast_data_metadata %>%
 filter(env_material_s == "sebum") %>%
-ggplot(aes(x = pident)) +
-geom_histogram() +
-ggtitle("Percent Identity Match sebum:Figure 4") +
-xlab("Percent")
+  ggplot(aes(x = pident)) +
+  geom_histogram() +
+  ggtitle("Percent Identity Match sebum:Figure 4") +
+  xlab("Percent")
 ```
 
 ```

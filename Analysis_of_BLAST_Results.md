@@ -6,7 +6,7 @@ October 23, 2018
 Introduction
 ============
 
-With a new understanding that bacterial communites on human skin are personalized, scientists have been curious to find out if this new discovery can be manipulated for forensic applications. For example, we want to know if we can identify a criminal matching his/her skin bacterial colonies with that of those object he/she may have touched. With the computations that I have done with the data from the assigned artilce, Freier et. al, I have answered the questions if a person's age can be determined using the bacteria on the skin. Also, I wanted to answer the question compare if bacteria on dust vs sebum are comparable.
+With a new understanding that bacterial communites on human skin are personalized, scientists have been curious to find out if this new discovery can be manipulated for forensic applications. For example, we want to know if we can identify a criminal matching his/her skin bacterial colonies with that of those objects he/she may have touched. With the computations that I have done with the data from the assigned artilce, Freier et. al, I have answered the questions if a person's age can be determined using the bacteria on the skin. Also, I wanted to understand the results from dust vs sebum samples.
 
 Methods
 =======
@@ -25,14 +25,18 @@ PCR was used for DNA amplification. Pysrosequencing was carried out on 454 Life 
 Computational
 -------------
 
+The process we used to analyze data is the following:
+
+Also, the process that we are sending the data through is: 1. Download the Data 2. Apply fastQC to the data which stands for fast Quality Check 3. Trim the sequences 4. Convert from fastq to fasta format 5. Blastn to look at which bacteria was most similar
+
 With our R studio codes, we have created a large table where all the information from above analysis are tabulated. Our codes allow for creating data, generating reports and creating plots to answer our questions. Let's go over a specific code as an example. + \#joined\_blast\_data\_metadata %&gt;% + \# filter(age\_s == 32) %&gt;% \# filtering based on specfic column + \# ggplot(aes(x = pident)) + \# this is for x axis + \# geom\_histogram() + + \# ggtitle("Percent Identiy Match age32") + \# This is our title + \# xlab("Percent") \# this is our x axis label
 
-In the above code, the filter command was used to choose 32 year olds in the age coloumn and draw a histogram with percent identity on the x axis and xlab command is used for to label. For example, I wanted to know how different are the bacterial colonies of 32 yr old vs those of 37. I used the code The histograms clearly show that percent identiy match graphs are different between these two age groups. In other words, we can conculde that we maybe able to determine a person's age based on their bacterial community on their skin.
+In the above code, the filter command was used to choose 32 year olds in the age coloumn and draw a histogram with percent identity on the x axis and xlab command is used for to label. I used the same code to figure out the difference between dust and sebum.
 
 Results
 =======
 
-The results of the histograms indicate there are distinct differences between bacterial colonies for each age group. In addition, the differnces between dust and sebum have been very also graphed in a histogram.
+The results of the histograms indicate there are distinct differences between bacterial colonies for each age group (Figure 1, 2). In addition, the differnces between dust and sebum (Figure 3, 4) have been very also graphed in a histogram. In Figure 2, there is a strange peak at around 87 percent which is unsual. We see similar unusual peak in figures 3 and 4.
 
 ``` r
 # Be sure to install these packages before running this script
@@ -154,15 +158,13 @@ joined_blast_data_metadata %>%
   filter(age_s == 32) %>%  # filtering based on specfic column
   ggplot(aes(x = pident)) +  # this is for x axis
     geom_histogram() +
-    ggtitle("Percent Identiy Match age32") + # This is our title
+    ggtitle("Percent Identiy Match age 32-Figure 1") + # This is our title
     xlab("Percent") # this is our x axis label
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](Analysis_of_BLAST_Results_files/figure-markdown_github/histograms32-1.png)
-
-Don't forget to report what your figures show in words, here in the Results section.
 
 ``` r
 # Here we're using the dplyr piping syntax to select a subset of rows matching 
@@ -172,7 +174,7 @@ joined_blast_data_metadata %>%
   filter(age_s == 25) %>%
   ggplot(aes(x = pident)) +
     geom_histogram() +
-    ggtitle("Percent Identity Match age25") +
+    ggtitle("Percent Identity Match age 25:Figure 2") +
     xlab("Percent")
 ```
 
@@ -12694,13 +12696,12 @@ unique(joined_blast_data_metadata["env_material_s"])
 # Here we're using the dplyr piping syntax to select a subset of rows matching 
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
-graph2 <- joined_blast_data_metadata %>%
-  filter(env_material_s == "dust") %>%
+joined_blast_data_metadata %>%
+filter(env_material_s == "dust") %>%
   ggplot(aes(x = pident)) +
-    geom_histogram() +
-    ggtitle("Percent Identity Match dust") +
-    xlab("Percent")
-graph2
+  geom_histogram() +
+  ggtitle("Percent Identity Match dust:Figure3") +
+  xlab("Percent")
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -12712,46 +12713,22 @@ graph2
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 joined_blast_data_metadata %>%
-  filter(env_material_s == "sebum") %>%
+filter(env_material_s == "sebum") %>%
   ggplot(aes(x = pident)) +
-    geom_histogram() +
-    ggtitle("Percent Identity Match sebum") +
-    xlab("Percent")
+  geom_histogram() +
+  ggtitle("Percent Identity Match sebum:Figure 4") +
+  xlab("Percent")
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](Analysis_of_BLAST_Results_files/figure-markdown_github/histogramssebum-1.png)
 
-``` r
-# Finally, we'd like to be able to make a summary table of the counts of
-# sequences for each subject for both sample types. To do that we can use the
-# table() function. We add the kable() function as well(from the tidyr package)
-# in order to format the table nicely when the document is knitted
-kable(table(joined_blast_data_metadata$host_subject_id_s,
-            joined_blast_data_metadata$sample_type_s))
-```
+\`\`\` \# Discussion After I did the command to identify unique age groups, I then plotted for two of the unique age groups a histogram with counts on the Y-axis and percent identity match on the X-axis. The age histograms allow us to compare percent identity match between age 32 and 25. We can see that histograms between these age groups can easily be distinguished. In other words, looking a given histogram, we can easily conclude if the person who has touched the mouse is 32 or 25. However, to make a conclusion that each age group gravitates towards certain colonies is premature. We need more data to be able to make that conclustion. Only 60 counts showed 100% identity match for age 32 whereas 100 counts showed 100% identity match for age 25. The unusal peak at 85 is probably due to presence of mite. It is important to remember that identity match lower than 97% percent doesnt really count as a match. It is probably an error.
 
-|        |     computer mouse|                                                  right palm|
-|--------|------------------:|-----------------------------------------------------------:|
-| F2     |                396|                                                         410|
-| F5     |                365|                                                         777|
-| F6     |                662|                                                         422|
-| F7     |                655|                                                         546|
-| F8     |                878|                                                         374|
-| M1     |                456|                                                         878|
-| M2     |                670|                                                         775|
-| M7     |                970|                                                         689|
-| M8     |                717|                                                         280|
-| M9     |                571|                                                         968|
-| \# Dis |            cussion|                                                            |
-| After  |   I did the comman|  d to identify unique age groups, I then plotted for two of|
-| the u  |   nique age groups|  a histogram with counts on the Y-axis and percent identity|
-| match  |   on the X-axis. T|      he age histograms allow us to compare percent identity|
-| match  |   between age 32 a|                   nd 25. We can see that histograms between|
-| these  |   age groups can e|     asily be distinguished. In other words, looking a given|
-| histo  |  gram, we can easi|      ly conclude if the person who has touched the mouse is|
-| 32 or  |    25. To me, this|          is facinating and very exciting to learn that each|
-| age g  |  roup has it own s|                                  et of bacaterial colonies.|
+In addiiton, I plotted histograms of counts vs percent indentity match for Dust vs Sebum (figures 3 and 4). Dust refers to bacterial colonies on mice while sebum refers to bacterial colonies on fingers. Over 2000 counts showed 100% identity match for sebum where as only about 1500 counts showed 100% mathces for dust. The unusal peak at 85 could be due to presence of mite on the mouse.
 
-In addiiton, I plotted histograms of counts vs percent indentity match for Dust vs Sebum. Dust refers to bacterial colonies on mice while sebum refers to bacterial colonies on fingers.
+Conclusion
+==========
+
+Looking at the Figures 1, 2 (age) and Figures 3, 4 (environmal samples ) has given helpful information on understanding data produced by blast. Further studies are needed to determine if these findings can be applied in forensic and courts for applications in legal systems.
