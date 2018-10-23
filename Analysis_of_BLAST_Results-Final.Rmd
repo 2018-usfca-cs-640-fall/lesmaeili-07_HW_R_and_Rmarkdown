@@ -41,12 +41,11 @@ Life Sciences Genome Sequencer FLX (Roche) at University of South Carolina.
 ## Computational
 The process we used to analyze data is the following:
 
-Also, the process that we are sending the data through is:
 1.  Download the Data
 2. Apply fastQC to the data which stands for fast Quality Check
 3. Trim the sequences
 4. Convert from fastq to fasta format
-5. Blastn to look at which bacteria was most similar
+5. Blastn to look for top matches
 
 With our R studio codes, we have created a large table where all the 
 information from above analysis are tabulated. Our codes allow for creating

@@ -162,7 +162,7 @@ joined_blast_data_metadata %>%
   filter(age_s == 32) %>%  # filtering based on specfic column
   ggplot(aes(x = pident)) +  # this is for x axis
     geom_histogram() +
-    ggtitle("Percent Identiy Match age 32-Figure 1") + # This is our title
+    ggtitle("Percent Identiy Match Age 32: Figure 1") + # This is our title
     xlab("Percent") # this is our x axis label
 ```
 
@@ -180,7 +180,7 @@ joined_blast_data_metadata %>%
   filter(age_s == 25) %>%
   ggplot(aes(x = pident)) +
     geom_histogram() +
-    ggtitle("Percent Identity Match age 25:Figure 2") +
+    ggtitle("Percent Identity Match Age 25: Figure 2") +
     xlab("Percent")
 ```
 
@@ -12706,7 +12706,7 @@ graph2 <- joined_blast_data_metadata %>%
   filter(env_material_s == "dust") %>%
   ggplot(aes(x = pident)) +
     geom_histogram() +
-    ggtitle("Percent Identity Match dust:Figure3") +
+    ggtitle("Percent Identity Match Dust: Figure 3") +
     xlab("Percent")
 graph2
 ```
@@ -12723,7 +12723,7 @@ joined_blast_data_metadata %>%
   filter(env_material_s == "sebum") %>%
   ggplot(aes(x = pident)) +
     geom_histogram() +
-    ggtitle("Percent Identity Match sebum:Figure 4") +
+    ggtitle("Percent Identity Match Sebum: Figure 4") +
     xlab("Percent")
 ```
 
@@ -12731,41 +12731,10 @@ joined_blast_data_metadata %>%
 
 ![](Analysis_of_BLAST_Results-Final_files/figure-markdown_github/histogramssebum-1.png)
 
-``` r
-# Finally, we'd like to be able to make a summary table of the counts of
-# sequences for each subject for both sample types. To do that we can use the
-# table() function. We add the kable() function as well(from the tidyr package)
-# in order to format the table nicely when the document is knitted
-kable(table(joined_blast_data_metadata$host_subject_id_s,
-            joined_blast_data_metadata$sample_type_s))
-```
+Discussion
+==========
 
-|        |     computer mouse|                                                  right palm|
-|--------|------------------:|-----------------------------------------------------------:|
-| F2     |                396|                                                         410|
-| F5     |                365|                                                         777|
-| F6     |                662|                                                         422|
-| F7     |                655|                                                         546|
-| F8     |                878|                                                         374|
-| M1     |                456|                                                         878|
-| M2     |                670|                                                         775|
-| M7     |                970|                                                         689|
-| M8     |                717|                                                         280|
-| M9     |                571|                                                         968|
-| \# Dis |            cussion|                                                            |
-| After  |   I did the comman|  d to identify unique age groups, I then plotted for two of|
-| the u  |   nique age groups|  a histogram with counts on the Y-axis and percent identity|
-| match  |   on the X-axis. T|      he age histograms allow us to compare percent identity|
-| match  |   between age 32 a|                   nd 25. We can see that histograms between|
-| these  |   age groups can e|     asily be distinguished. In other words, looking a given|
-| histo  |  gram, we can easi|      ly conclude if the person who has touched the mouse is|
-| 32 or  |    25. However, to|    make a conclusion that each age group gravitates towards|
-| certa  |  in colonies is pr|          emature. We need more data to be able to make that|
-| concl  |  ustion. Only 60 c|         ounts showed 100% identity match for age 32 whereas|
-| 100 c  |  ounts showed 100%|         identity match for age 25. The unusal peak at 85 is|
-| proba  |  bly due to presen|       ce of mite. It is important to remember that identity|
-| match  |   lower than 97% p|       ercent doesnt really count as a match. It is probably|
-| an er  |               ror.|                                                            |
+After I did the command to identify unique age groups, I then plotted for two of the unique age groups a histogram with counts on the Y-axis and percent identity match on the X-axis. The age histograms allow us to compare percent identity match between age 32 and 25. We can see that histograms between these age groups can easily be distinguished. In other words, looking a given histogram, we can easily conclude if the person who has touched the mouse is 32 or 25. However, to make a conclusion that each age group gravitates towards certain colonies is premature. We need more data to be able to make that conclustion. Only 60 counts showed 100% identity match for age 32 whereas 100 counts showed 100% identity match for age 25. The unusal peak at 85 is probably due to presence of mite. It is important to remember that identity match lower than 97% percent doesnt really count as a match. It is probably an error.
 
 In addiiton, I plotted histograms of counts vs percent indentity match for Dust vs Sebum (figures 3 and 4). Dust refers to bacterial colonies on mice while sebum refers to bacterial colonies on fingers. Over 2000 counts showed 100% identity match for sebum where as only about 1500 counts showed 100% mathces for dust. The unusal peak at 85 could be due to presence of mite on the mouse.
 
