@@ -259,7 +259,7 @@ sebum refers to bacterial colonies on fingers.  Over 2000 counts showed 100%
 identity match for sebum where as only about 1500 counts showed 100% mathces for
 dust. The unusal peak at 85 could be due to presence of mite on the mouse.
 
-# Conclusion
+# Conclusion 
 Looking at the Figures 1, 2 (age) and Figures 3, 4 (environmal samples ) has 
 given helpful information on understanding data produced by blast. Further 
 studies are needed to determine if these findings can be applied in forensic
