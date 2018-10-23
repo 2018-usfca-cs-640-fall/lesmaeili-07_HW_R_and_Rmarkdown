@@ -1,12 +1,12 @@
 Analysis of BLAST Results
 ================
 Leila Esmaeili
-October 21, 2018
+October 23, 2018
 
 Introduction
 ============
 
-With a new understanding that bacterial communites on human skin are personalized, scientists have been curious to find out if new discovery can be manipulated for forensic applications. In the assigned artilce, Freier et. al have tried to answer the question whether a person can be idntified based on microbial colonies on the the objects he/she has touched.
+With a new understanding that bacterial communites on human skin are personalized, scientists have been curious to find out if this new discovery can be manipulated for forensic applications. For example, we want to know if we can identify a criminal matching his/her skin bacterial colonies with that of those object he/she may have touched. With the computations that I have done with the data from the assigned artilce, Freier et. al, I have answered the questions if a person's age can be determined using the bacteria on the skin. Also, I wanted to answer the question compare if bacteria on dust vs sebum are comparable.
 
 Methods
 =======
@@ -25,12 +25,14 @@ PCR was used for DNA amplification. Pysrosequencing was carried out on 454 Life 
 Computational
 -------------
 
-With our R studio codes, we have created a large table where all the information from above analysis are tabulated. Our codes allow for creatingtidy data, generating reports and creating plots to answer our questions. For example, I wanted to know how different are the bacterial colonies of 32 yr old vs those of 37. The histograms clearly show that percent identiy match graphs are different between these two age groups. In other words, we can conculde that we maybe able to determine a person's age based on their bacterial community on their skin.And another paragraph or two here.
+With our R studio codes, we have created a large table where all the information from above analysis are tabulated. Our codes allow for creating data, generating reports and creating plots to answer our questions. Let's go over a specific code as an example. + \#joined\_blast\_data\_metadata %&gt;% + \# filter(age\_s == 32) %&gt;% \# filtering based on specfic column + \# ggplot(aes(x = pident)) + \# this is for x axis + \# geom\_histogram() + + \# ggtitle("Percent Identiy Match age32") + \# This is our title + \# xlab("Percent") \# this is our x axis label
+
+In the above code, the filter command was used to choose 32 year olds in the age coloumn and draw a histogram with percent identity on the x axis and xlab command is used for to label. For example, I wanted to know how different are the bacterial colonies of 32 yr old vs those of 37. I used the code The histograms clearly show that percent identiy match graphs are different between these two age groups. In other words, we can conculde that we maybe able to determine a person's age based on their bacterial community on their skin.
 
 Results
 =======
 
-The results of the histograms indicate there are distinct differences between bacterial colonies for each age group. In addition, the differnces between dust and sebum.
+The results of the histograms indicate there are distinct differences between bacterial colonies for each age group. In addition, the differnces between dust and sebum have been very also graphed in a histogram.
 
 ``` r
 # Be sure to install these packages before running this script
@@ -12730,22 +12732,26 @@ kable(table(joined_blast_data_metadata$host_subject_id_s,
             joined_blast_data_metadata$sample_type_s))
 ```
 
-|     |  computer mouse|  right palm|
-|-----|---------------:|-----------:|
-| F2  |             396|         410|
-| F5  |             365|         777|
-| F6  |             662|         422|
-| F7  |             655|         546|
-| F8  |             878|         374|
-| M1  |             456|         878|
-| M2  |             670|         775|
-| M7  |             970|         689|
-| M8  |             717|         280|
-| M9  |             571|         968|
-
-Discussion
-==========
-
-After I did the command to identify unique age groups, I then plotted for each 3 unique age groups a histogram with counts on the Y-axis and percent identity match on the X-axis. The age histograms allow us to compare percent identity match between age 32 and 37 and 25. We can see that histograms between these age groups can easily be distinguished. In other words, looking a given histogram, we can easily conclude if the person who has touched the mouse is 32 or 37 or 25. To me, this is facinating and very exciting to learn that each age group has it own set of bacaterial colonies.
+|        |     computer mouse|                                                  right palm|
+|--------|------------------:|-----------------------------------------------------------:|
+| F2     |                396|                                                         410|
+| F5     |                365|                                                         777|
+| F6     |                662|                                                         422|
+| F7     |                655|                                                         546|
+| F8     |                878|                                                         374|
+| M1     |                456|                                                         878|
+| M2     |                670|                                                         775|
+| M7     |                970|                                                         689|
+| M8     |                717|                                                         280|
+| M9     |                571|                                                         968|
+| \# Dis |            cussion|                                                            |
+| After  |   I did the comman|  d to identify unique age groups, I then plotted for two of|
+| the u  |   nique age groups|  a histogram with counts on the Y-axis and percent identity|
+| match  |   on the X-axis. T|      he age histograms allow us to compare percent identity|
+| match  |   between age 32 a|                   nd 25. We can see that histograms between|
+| these  |   age groups can e|     asily be distinguished. In other words, looking a given|
+| histo  |  gram, we can easi|      ly conclude if the person who has touched the mouse is|
+| 32 or  |    25. To me, this|          is facinating and very exciting to learn that each|
+| age g  |  roup has it own s|                                  et of bacaterial colonies.|
 
 In addiiton, I plotted histograms of counts vs percent indentity match for Dust vs Sebum. Dust refers to bacterial colonies on mice while sebum refers to bacterial colonies on fingers.

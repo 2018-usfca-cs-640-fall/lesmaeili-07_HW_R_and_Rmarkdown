@@ -8,9 +8,9 @@ output: github_document
 # Introduction
 With a new  understanding that bacterial communites on human skin are
 personalized, scientists have been curious to find out if this new discovery can 
-be manipulated for forensic applications. For example, can a criminal be
-identified matching his/her skin bacterial colonies with that of those object 
-he/she may have touched. With the computations that I have done 
+be manipulated for forensic applications. For example, we want to know if we can
+identify a criminal matching his/her skin bacterial colonies with that of those
+object he/she may have touched. With the computations that I have done 
 with the data from the assigned artilce, Freier et. al, I
 have answered the questions if a person's age can be determined using the 
 bacteria on the skin.  Also, I wanted to answer the question compare if bacteria
@@ -243,15 +243,14 @@ joined_blast_data_metadata %>%
 kable(table(joined_blast_data_metadata$host_subject_id_s,
             joined_blast_data_metadata$sample_type_s))
 ```
-
 # Discussion
-After I did the command to identify unique age groups, I then plotted for each
-3 unique age groups a histogram with counts on the Y-axis and percent identity 
+After I did the command to identify unique age groups, I then plotted for two of
+the unique age groups a histogram with counts on the Y-axis and percent identity 
 match on the X-axis. The age histograms allow us to compare percent identity
-match between age 32 and  37 and 25.  We can see that histograms between 
+match between age 32 and  25.  We can see that histograms between 
 these age groups can easily be  distinguished. In other words, looking a given
 histogram, we can easily conclude if the person who has touched the mouse is
-32 or 37 or 25. To me, this is facinating and very exciting to learn that each
+32 or  25. To me, this is facinating and very exciting to learn that each
 age group has it own set of bacaterial colonies.
 
 In addiiton, I plotted histograms of counts vs percent indentity match for Dust
