@@ -6,12 +6,12 @@ October 23, 2018
 Introduction
 ============
 
-With a new understanding that bacterial communites on human skin are personalized, scientists have been curious to find out if this new discovery can be manipulated for forensic applications. For example, we want to know if we can identify a criminal matching his/her skin bacterial colonies with that of those objects he/she may have touched. With the computations that I have done with the data from the assigned artilce, Freier et. al, I have answered the questions if a person's age can be determined using the bacteria on the skin. Also, I wanted to understand the results from dust vs sebum samples.
+With a new understanding that bacterial communites on human skin are personalized, scientists have been curious to find out if this new discovery can be manipulated for forensic applications. For example, we want to know if we can identify a criminal matching his/her skin bacterial colonies with that of those objects he/she may have touched. With the computations that I have done with the data from the assigned artilce, Freier et al., I have explored the questions if a person's age can be determined using the bacteria on the skin. Also, I wanted to understand the results from dust vs sebum samples.
 
 Methods
 =======
 
-First, The authors compared bacteria on individual keys of three computer keyboards to those found on the fingers of the keyboard owners. Second, we examined the similarity between skin-associated bacterial communities on objects stored at −20 °C(a standard method for storing samples before DNA extraction) versus those objects stored under typical indoor environmental con-ditions for up to 14 days. Finally, we linked objects to specific individuals by comparing the bacteria on their computer mice against a database containing bacterial community information for more than 250 hand surfaces, including the hand of the owner.
+First, the authors compared bacteria on individual keys of three computer keyboards to those found on the fingers of the keyboard owners. Second, we examined the similarity between skin-associated bacterial communities on objects stored at −20 °C(a standard method for storing samples before DNA extraction) versus those objects stored under typical indoor environmental conditions for up to 14 days. Finally, we linked objects to specific individuals by comparing the bacteria on their computer mice against a database containing bacterial community information for more than 250 hand surfaces, including the hand of the owner.
 
 Their method of doing this was very simple. They just swabbed bacteria on the surface of keyboards and computer mice and the fingers of people touching them.
 They then grew these bacteria in petri dishes and isolated communites. And, then they extracted DNA and sequences the DNA and finall compared their sequences to a natiaonl data base.

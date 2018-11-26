@@ -1,8 +1,9 @@
 ---
-title: "Analysis of BLAST Results"
+title: "Analysis of BLAST Results in Distinct Age Groups and Sample Types"
 author: "Leila Esmaeili"
 date: "October 23, 2018"
 output: github_document
+Contact: lesmaeili@dons.usfca.edu
 ---
 
 # Introduction
@@ -11,8 +12,8 @@ personalized, scientists have been curious to find out if this new discovery can
 be manipulated for forensic applications. For example, we want to know if we can
 identify a criminal matching his/her skin bacterial colonies with that of those
 objects he/she may have touched. With the computations that I have done 
-with the data from the assigned artilce, Freier et. al, I
-have answered the questions if a person's age can be determined using the 
+with the data from the assigned artilce, Fierir et al., I
+have explored the questions if a person's age can be determined using the 
 bacteria on the skin.  Also, I wanted to understand the results from  dust vs
 sebum samples.
 
@@ -42,7 +43,7 @@ Life Sciences Genome Sequencer FLX (Roche) at University of South Carolina.
 The process we used to analyze data is the following:
 
 Also, the process that we are sending the data through is:
-1.  Download the Data
+1. Download the Data
 2. Apply fastQC to the data which stands for fast Quality Check
 3. Trim the sequences
 4. Convert from fastq to fasta format
@@ -182,20 +183,20 @@ unique(as.character(joined_blast_data_metadata$host_subject_id_s))
 ```
 
 
-```{r histograms32}
+```{r histograms_percent_identity_match _age32}
 # Here we're using the dplyr piping syntax to select a subset of rows matching a
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 
 joined_blast_data_metadata %>%
-  filter(age_s == 32) %>%  # filtering based on specfic column
-  ggplot(aes(x = pident)) +  # this is for x axis
+  filter(age_s == 32) %>%  # filtering based on specfic column age
+    ggplot(aes(x = pident)) +  # this is for x axis
     geom_histogram() +
     ggtitle("Percent Identiy Match age 32-Figure 1") + # This is our title
     xlab("Percent") # this is our x axis label
 ```
-```{r histograms25}
-# Here we're using the dplyr piping syntax to select a subset of rows matching 
+```{r histograms_percent_identity_match_age25}
+# Here we're using the dplyr piping syntax to select a subset of rows matching
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 joined_blast_data_metadata %>%
@@ -208,13 +209,13 @@ joined_blast_data_metadata %>%
 ``` 
 
 ```{r Processing for Graph2}
-colnames (joined_blast_data_metadata)
+colnames(joined_blast_data_metadata)
 joined_blast_data_metadata["env_material_s"]
 unique(joined_blast_data_metadata["env_material_s"])
 ```
 
-```{r histogramsdust}
-# Here we're using the dplyr piping syntax to select a subset of rows matching 
+```{r histograms_dust}
+# Here we're using the dplyr piping syntax to select a subset of rows matching
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 joined_blast_data_metadata %>%
@@ -225,19 +226,19 @@ filter(env_material_s == "dust") %>%
   xlab("Percent")
 ```
 
-```{r histogramssebum}
-# Here we're using the dplyr piping syntax to select a subset of rows matching 
+```{r histograms_sebum}
+# Here we're using the dplyr piping syntax to select a subset of rows matching
 # criteria we specify (using the filter) function, and then pull out a column
 # from the data to make a histogram.
 joined_blast_data_metadata %>%
-filter(env_material_s == "sebum") %>%
-  ggplot(aes(x = pident)) +
+filter(env_material_s == "sebum") %>% # filtering for sebum
+  ggplot(aes(x = pident)) + # This is x-axis
   geom_histogram() +
   ggtitle("Percent Identity Match sebum:Figure 4") +
   xlab("Percent")
 ```
 
-```
+
 # Discussion
 After I did the command to identify unique age groups, I then plotted for two of
 the unique age groups a histogram with counts on the Y-axis and percent identity 
@@ -260,7 +261,8 @@ identity match for sebum where as only about 1500 counts showed 100% mathces for
 dust. The unusal peak at 85 could be due to presence of mite on the mouse.
 
 # Conclusion 
-Looking at the Figures 1, 2 (age) and Figures 3, 4 (environmal samples ) has 
+Looking at the Figures 1, 2 (age) and Figures 3, 4 (environmental samples ) has 
 given helpful information on understanding data produced by blast. Further 
 studies are needed to determine if these findings can be applied in forensic
 and courts for applications in legal systems.
+
