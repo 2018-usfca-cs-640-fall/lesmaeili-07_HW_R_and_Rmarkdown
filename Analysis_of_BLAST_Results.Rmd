@@ -253,6 +253,5 @@ dust. The unusal peak at 85 could be due to presence of mite on the mouse.
 # Conclusion 
 Looking at the Figures 1, 2 (age) and Figures 3, 4 (environmental samples ) has 
 given helpful information on understanding data produced by blast. Further 
-studies are needed to determine if these findings can be applied in forensic
-and courts for applications in legal systems.
+studies are needed to determine if these findings can be applied in courts for applications in legal systems.
 
