@@ -10,8 +10,7 @@ With a new understanding that bacterial communites on human skin are personalize
 
 Methods
 =======
-
-First, the authors compared bacteria on individual keys of three computer keyboards to those found on the fingers of the keyboard owners. Second, they examined the similarity between skin-associated bacterial communities on objects stored at −20 °C(a standard method for storing samples before DNA extraction) versus those objects stored under typical indoor environmental conditions for up to 14 days. Finally, They linked objects to specific individuals by comparing the bacteria on their computer mice against a database containing bacterial community information for more than 250 hand surfaces, including the hand of the owner.
+They linked objects to specific individuals by comparing the bacteria on their computer mice against a database containing bacterial community information for more than 250 hand surfaces, including the hand of the owner.
 
 Their method of doing this was very simple. They just swabbed bacteria on the surface of keyboards and computer mice and the fingers of people touching them.
 They then grew these bacteria in petri dishes and isolated communites. And, then they extracted DNA and sequences the DNA and finall compared their sequences to a natiaonl data base.

@@ -18,20 +18,7 @@ bacteria on the skin.  Also, I wanted to understand the results from  dust vs
 sebum samples.
 
 # Methods
-First, The authors compared bacteria on individual keys of three computer 
-keyboards to those found on the fingers of the keyboard owners. Second, we
-examined the similarity between skin-associated bacterial communities on objects
-stored at −20 °C(a standard method for storing samples before DNA extraction) 
-versus those objects stored under typical indoor environmental con-ditions for
-up to 14 days. Finally, we linked objects to specific individuals by comparing 
-the bacteria on their computer mice against a database containing bacterial
-community information for more than 250 hand surfaces, including the hand of
-the owner.
-
-Their method of doing this was very simple. They just swabbed bacteria on the
-surface of keyboards and computer mice and the fingers of people touching them.  
-They then grew these bacteria in petri dishes and isolated communites.  And,
-then they extracted DNA and sequences the DNA and finall compared their 
+The authors swabbed bacteria on the surface of computer mice and the fingers of people touching them. They then grew these bacteria in petri dishes and isolated communites.  And, then they extracted DNA and sequences the DNA and finall compared their 
 sequences to a natiaonl data base.
 
 ## Sample origin and sequencing
@@ -240,6 +227,9 @@ filter(env_material_s == "sebum") %>% # filtering for sebum
 
 
 # Discussion
+In this analysis, I was primarily interested to determine if the accuracy of the BLAST matches we received differed between samples coming from subjects of different ages. I found that the histograms of percent identities for all BLAST matches differed between subjects (Figures 1 and 2). A larger number of sequences (100) had 100% matches to a sequence in the GenBank database for 25 year-old subjects vs fewer (60) 100% matches for the sequences originating from 32 year old subjects. This may be due to presence
+of impurites such as mite.
+
 After I did the command to identify unique age groups, I then plotted for two of
 the unique age groups a histogram with counts on the Y-axis and percent identity 
 match on the X-axis. The age histograms allow us to compare percent identity
