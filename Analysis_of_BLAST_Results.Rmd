@@ -49,8 +49,8 @@ Also, the process that we are sending the data through is:
 4. Convert from fastq to fasta format
 5. Blastn to look at which bacteria was most similar
 
-With our R studio codes, we have created a large table where all the 
-information from above analysis are tabulated. Our codes allow for creating
+In our analysis, we used only one part of the data set relevant to us (i.e. mice
+and fingertip dataset).  With our R studio codes, we have created a large table where all the information from above analysis are tabulated. Our codes allow for creating
 data, generating reports and creating plots to answer our questions. Let's go 
 over a specific code as an example.
 + #joined_blast_data_metadata %>%
@@ -67,7 +67,7 @@ between dust and sebum.
 
 # Results
 The results of the histograms indicate there are distinct differences between 
-bacterial colonies for each age group (Figure 1, 2).  In addition, the 
+bacterial colonies for each age group (Figure 1, 2). In addition, the 
 differnces between dust and sebum (Figure 3, 4) have been very also graphed in 
 a histogram.  In Figure 2,  there is a strange peak at around 87 
 percent which is unsual. We see similar unusual peak in figures 3 and 4. 
